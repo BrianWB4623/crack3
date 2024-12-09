@@ -4,6 +4,7 @@
 
 #include "fileutil.h"
 
+
 // DIRECTIONS
 // Choose whether you are doing the 2D array or
 // the array of arrays.
@@ -64,7 +65,7 @@ char (*loadFile2D(char *filename, int *size))[COLS]
 	while(fgets(buffer,COLS,in)){
 		buffer[strcspn(buffer,"\n")]='\0';
 		if(*size>=maxSize){
-			maxSize=2;
+			maxSize*=2;
 			char(*temporary)[COLS]=realloc(lines,maxSize*sizeof(*lines));
 			lines=temporary;
 		}
@@ -86,8 +87,6 @@ char (*loadFile2D(char *filename, int *size))[COLS]
 	return lines;
 }
 
-// Search the array for the target string.
-// Return the found string or NULL if not found.
 char * substringSearchAA(char *target, char **lines, int size)
 {
 
@@ -126,3 +125,4 @@ char * StringSearch2D(char *target, char (*lines)[COLS], int size)
     }
     return NULL;
 }
+
